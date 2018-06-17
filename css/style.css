@@ -1,0 +1,252 @@
+@font-face{
+	font-family: "MuseoSansCyrl";
+	src: url("../font/MuseoSansCyrl.otf");
+}
+@font-face{
+	font-family: "NotoSerif";
+	src:url("../font/NotoSerif-Italic.ttf"), 
+	url("../font/NotoSerif-Bold.ttf"),
+	url("../font/NotoSerif-BoldItalic.ttf"),
+	url("../font/NotoSerif-Regular.ttf");
+}
+html, body{
+	margin: 0px;
+	height: 100vh;
+}
+header{
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	width: 100%;
+	font-family: "MuseoSansCyrl", sans-serif;
+	position: fixed;
+	z-index: 999;
+}
+.nav{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0;
+}
+nav{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	height: 75px;
+	font-size: 13px;
+	color: rgb(20, 158, 216);
+	padding: 0 40px;
+	background: #fff;
+}
+li{
+	list-style: none;
+	margin: 0 20px;
+}
+a{
+	text-decoration: none;
+	color: #000;
+}
+a:hover{
+	color: rgb(20, 158, 216);
+	text-decoration: underline;
+}
+.banner{
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+	background: #0066a1;
+	height: 50px;
+}
+.banner-txt{
+	font-size: 14px;
+	line-height: 1.429;
+	color: #fff;
+}
+.banner-btn{
+	margin-left: 10px;
+	border-radius: 50%;
+	border: 1px solid #fff;
+	width: 20px;
+	height: 20px;
+	color: #fff;
+	background: transparent;
+	font-size: 14px;
+	outline: none;
+	cursor: pointer;
+}
+.logo{
+	width: 90px;
+	height: 90px;
+	background: url(../img/logo.png);
+	transform: translateY(10px);
+	z-index: 3;
+}
+.lang a {
+	color: rgb(140, 140, 140);
+	padding: 0 10px;
+}
+.lang-active a  {
+	color: rgb(20, 158, 216);
+	border-right: 1px solid rgb(140, 140, 140);
+}
+* {box-sizing: border-box;}
+form {
+  position: relative;
+  width: 150px;
+  margin: 0 auto;
+  height: 42px;
+}
+.search {
+  height: 32px;
+  width: 0;
+  padding: 0 22px 0 10px;
+  border: none;
+  border-bottom: 1px solid transparent;
+  outline: none;
+  background: transparent;
+  transition: .4s cubic-bezier(0, 0.8, 0, 1);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+.search:focus {
+  width: 150px;
+  
+  border-bottom: 1px solid #000;
+}
+.btn-search {
+  background: url(../img/search.png) no-repeat 50% 50%;
+  border: none;
+  height: 32px;
+  width: 32px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.slider-inner{
+
+	width:100%;
+	overflow: hidden;
+}
+.slider-slides{
+	display: flex;
+	flex-direction: row;
+	width: 300%;
+}
+.slide{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 580px;
+	width: 100%;
+	background: url(../img/photo.jpg) no-repeat 50% 58%;
+	margin:0;
+}
+.head-slide {
+  font-size: 22px;
+  font-family: "NotoSerif", sans-serif;
+  color: rgb(255, 255, 255);
+  font-style: italic;
+  margin:40px 0 60px;
+
+
+}
+.slide-ctn{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	padding: 40px 60px;
+	height: 260px;
+	width: 660px;
+	background: #fff;
+	border-radius: 5px;
+}
+h3{
+	font-size: 13px;
+	font-family: "MuseoSansCyrl", sans-serif;
+	color: rgb(250, 179, 48);
+	
+}
+h3:before{
+	content: "";
+	font-size: 0px;
+	padding:1px 4px;
+	background: rgb(250,179,48); 
+	position: relative;
+	top: -5px;
+	right: 10px;
+}
+h3:after{
+	content: "";
+	font-size: 0px;
+	padding:1px 4px;
+	background: rgb(250,179,48); 
+	position: relative;
+	top: -5px;
+	left: 10px;
+}
+.btn-slide{
+	font-size: 13px;
+	color: rgb(255, 255, 255);
+	text-transform: uppercase;
+	line-height: 2.5;
+	text-align: center;
+	font-family: "MuseoSansCyrl";
+	background: #fab330;
+	width: 185px;
+	padding: 8px 0;
+	border-radius: 5px;
+}
+.btn-slide:hover{
+	text-decoration: none;
+}
+
+.slide p{
+  font-size: 32px;
+  font-family: "NotoSerif";
+  color: rgb(40, 40, 40);
+  font-style: italic;
+  line-height: 1.235;
+  text-align: center;
+  margin:0 0 25px;
+}
+.slider input[type=radio] {
+    display: none;
+}
+.controls{
+   position: relative;
+   top: -50px;
+    text-align: center;
+}
+.controls label{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid white;
+    border-radius: 50%;
+    margin: 0 3px;
+    cursor: pointer;
+}
+.controls label:hover,
+#btn-1:checked ~ .controls label[for="btn-1"] {
+    background-color: #fff;
+
+}
+#btn-1:checked ~ .slider-inner .slider-slides {
+    transform: translate(0);
+}
+
+#btn-2:checked ~ .slider-inner .slider-slides {
+    transform: translate(-33.33%);
+}
+
+#btn-3:checked ~ .slider-inner .slider-slides {
+    transform: translate(-66.66%);
+}
