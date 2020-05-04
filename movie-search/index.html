@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Search</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
+  </head>
+  <body>
+    <div
+      class="jumbotron jumbotron-fluid mb-0 text-center bg-dark"
+      height="100px"
+    >
+      <h1 class="font-weight-light text-white">Movie search</h1>
+    </div>
+    <div class="jumbotron jumbotron-fluid bg-white">
+      <div class="container">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="search movie"
+            aria-label="search-movie"
+            aria-describedby="basic-addon2"
+            id="search"
+          />
+          <div class="input-group-append">
+            <button class="btn btn-outline-dark" type="button" id="btn-search">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-2">
+      <div class="swiper-container">
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/swiper/js/swiper.js"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    <script>
+      var mySwiper = new Swiper(".swiper-container", {
+        speed: 400,
+        spaceBetween: 100,
+      });
+      var swiper = new Swiper(".swiper-container", {
+        loop: true,
+        slidesPerView: 1,
+        keyboard: {
+          enabled: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+
+        breakpoints: {
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 50,
+          },
+        },
+      });
+    </script>
+
+    <script src="/dist/bundle.js"></script>
+  </body>
+</html>
