@@ -1,1 +1,42 @@
 @import "node_modules/bootstrap/scss/bootstrap";
+
+.cicle {
+  display: none;
+  background-color: transparent;
+  position: absolute;
+  right: 41px;
+  border-radius: 50%;
+  z-index: 99;
+  svg {
+    animation: 1s linear 0s normal none infinite running rot;
+    -webkit-animation: 1s linear 0s normal none infinite running rot;
+    width: 100px;
+  }
+}
+.active {
+  display: block;
+}
+@keyframes rot {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rot {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.swiper-container {
+  align-items: baseline;
+}
+div.card {
+  width: 100%;
+  background-color: #00c;
+  box-shadow: 25px 25px 25xp 25px #00c;
+}

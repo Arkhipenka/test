@@ -3,22 +3,16 @@ async function getRaiting(id) {
 
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data);
-  console.log(data.Response);
-  console.log(data.imdbRating);
 
-  return data.imdbRaiting;
+  return data;
 }
 
 async function getRaitings(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    const id = arr[i].imdbID;
-    const ratings = Promise.all([
-      getRaiting(id),
-      getRaiting(id),
-      getRaiting(id),
-    ]);
-    console.log(raiting.imdbRating);
+  const requests = [];
+  for (let counter = 0; counter < arr.length; counter++) {
+    requests.push(getRaiting(arr[counter].imdbID));
   }
+  const results = await Promise.all(requests);
+  return results;
 }
 export default getRaitings;

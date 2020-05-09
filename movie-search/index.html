@@ -8,79 +8,73 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
   </head>
   <body>
-    <div
-      class="jumbotron jumbotron-fluid mb-0 text-center bg-dark"
-      height="100px"
-    >
-      <h1 class="font-weight-light text-white">Movie search</h1>
-    </div>
-    <div class="jumbotron jumbotron-fluid bg-white">
-      <div class="container">
-        <div class="input-group">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="search movie"
-            aria-label="search-movie"
-            aria-describedby="basic-addon2"
-            id="search"
-          />
-          <div class="input-group-append">
-            <button class="btn btn-outline-dark" type="button" id="btn-search">
-              Search
-            </button>
+    <div class="wrapper" min-height="100vh" style="min-height: 100vh;">
+      <div
+        class="jumbotron jumbotron-fluid mb-0 text-center bg-dark"
+        height="100px"
+      >
+        <h1 class="font-weight-light text-white">Movie search</h1>
+      </div>
+      <div class="jumbotron jumbotron-fluid bg-white">
+        <div class="container">
+          <div class="input-group">
+            <input
+              type="search"
+              class="form-control"
+              placeholder="search movie"
+              aria-label="search-movie"
+              aria-describedby="basic-addon2"
+              id="search"
+            />
+            <div class="input-group-append cicle" id="load">
+              <svg
+                class="bi bi-arrow-clockwise"
+                width="2.5em"
+                height="2.5em"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3.17 6.706a5 5 0 017.103-3.16.5.5 0 10.454-.892A6 6 0 1013.455 5.5a.5.5 0 00-.91.417 5 5 0 11-9.375.789z"
+                  clip-rule="evenodd"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M8.147.146a.5.5 0 01.707 0l2.5 2.5a.5.5 0 010 .708l-2.5 2.5a.5.5 0 11-.707-.708L10.293 3 8.147.854a.5.5 0 010-.708z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-dark"
+                type="button"
+                id="btn-search"
+              >
+                Search
+              </button>
+            </div>
           </div>
+          <p class="text-warning lead text-center mt-2" id="result"></p>
+        </div>
+      </div>
+
+      <div class="container mt-2">
+        <div class="swiper-container">
+          <div class="swiper-wrapper"></div>
+          
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </div>
       </div>
     </div>
-
-    <div class="container mt-2">
-      <div class="swiper-container">
-        <div class="swiper-wrapper"></div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+    <footer class="footer container-fluid bg-dark pt-2 pb-2">
+      <div class="container">
+        <span class="text-white">RS School 2020q1</span>
       </div>
-    </div>
-
-    <script src="https://unpkg.com/swiper/js/swiper.js"></script>
-    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
-    <script>
-      var mySwiper = new Swiper(".swiper-container", {
-        speed: 400,
-        spaceBetween: 100,
-      });
-      var swiper = new Swiper(".swiper-container", {
-        loop: true,
-        slidesPerView: 1,
-        keyboard: {
-          enabled: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-
-        breakpoints: {
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 4,
-            spaceBetween: 50,
-          },
-        },
-      });
-    </script>
+    </footer>
 
     <script src="/dist/bundle.js"></script>
   </body>
