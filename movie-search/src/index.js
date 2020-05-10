@@ -44,12 +44,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       return data;
     });
-    console.log(words);
+
     if (!words) {
       load.classList.remove('active');
       result.innerHTML = resultError;
     } else {
-      const movieData = await getMovieTitle(words, page);
+      const movieData = await getMovieTitle(words, page, async (url) => {
+        const res = await fetch(url);
+        const data = await res.json();
+        console.log(data);
+        return data;
+      });
 
       const pages = Math.ceil(movieData.totalResults / 10);
 

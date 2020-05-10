@@ -6,7 +6,6 @@ async function getWordTranslate(value, getWord) {
 
     const data = await getWord(url);
 
-    console.log(data);
     return data.text[0];
   } catch (e) {
     return '';
