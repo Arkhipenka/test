@@ -1,4 +1,4 @@
-@import "node_modules/bootstrap/scss/bootstrap";
+@import 'node_modules/bootstrap/scss/bootstrap';
 
 .cicle {
   display: none;
@@ -33,10 +33,68 @@
   }
 }
 .swiper-container {
-  align-items: baseline;
+  margin-bottom: 50px;
 }
-div.card {
+div.small {
+  display: flex !important;
+  justify-content: center !important;
+}
+.card {
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 15px 0 #000;
+  height: 360px;
   width: 100%;
-  background-color: #00c;
-  box-shadow: 25px 25px 25xp 25px #00c;
+  img {
+    width: 100%;
+  }
+
+  .card-body-overlay {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 0 5px;
+    img {
+      height: 70%;
+    }
+    p {
+      margin-bottom: 5px;
+    }
+    .description {
+      display: none;
+      line-height: 1.2;
+    }
+  }
+  @include media-breakpoint-only(xs) {
+    min-height: 430px;
+  }
+  @include media-breakpoint-only(sm) {
+    height: 480px;
+  }
+  @include media-breakpoint-only(md) {
+    height: 480px;
+  }
+  @include media-breakpoint-only(lg) {
+    height: 290px;
+  }
+  @include media-breakpoint-only(xl) {
+    height: 355px;
+  }
+}
+
+div.card:hover {
+  box-shadow: 5px 5px 15px 0 #000;
+  .card-body-overlay {
+    position: absolute;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+
+    .description {
+      display: block;
+    }
+  }
 }

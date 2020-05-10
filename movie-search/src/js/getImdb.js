@@ -1,9 +1,17 @@
+import { keyImdb } from './keys';
+import { result } from '../index';
+import { resultError } from '../index';
+
 async function getMovieTitle(value, page) {
-  const url = `https://www.omdbapi.com/?s=${value}&page=${page}&apikey=6ca64c1`;
+  try {
+    const url = `https://www.omdbapi.com/?s=${value}&page=${page}&apikey=${keyImdb}`;
 
-  const res = await fetch(url);
-  const data = await res.json();
-
-  return data;
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data);
+    return data;
+  } catch (e) {
+    result.innerHTML = resultError;
+  }
 }
 export default getMovieTitle;

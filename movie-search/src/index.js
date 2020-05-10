@@ -1,23 +1,28 @@
-require("./styles/index.scss");
-import getWordTranslate from "./js/translate.js";
-import getMovieTitle from "./js/getImdb";
-import getRaitings from "./js/getRaitings.js";
-import createCards from "./js/createCards";
-import mySwiper from "./js/swiper";
-//import swiperSize from "./js/swiper";
+require('./styles/index.scss');
 
-document.addEventListener("DOMContentLoaded", () => {
-  const btnSearch = document.getElementById("btn-search");
-  const search = document.getElementById("search");
-  const result = document.getElementById("result");
-  const swiper = document.querySelector(".swiper-wrapper");
+import getWordTranslate from './js/translate.js';
+import getMovieTitle from './js/getImdb';
+import getRaitings from './js/getRaitings.js';
+import createCards from './js/createCards';
+import createSwiper from './js/swiper';
+
+const btnSearch = document.getElementById('btn-search');
+const search = document.getElementById('search');
+export const result = document.getElementById('result');
+export const resultError =
+  'error, try again later or check your internet connection';
+const swiper = document.querySelector('.swiper-wrapper');
+
+document.addEventListener('DOMContentLoaded', () => {
   search.focus();
 
-  btnSearch.addEventListener("click", searchMovie);
-  search.addEventListener("keyup", searchMovieEnter);
+  btnSearch.addEventListener('click', searchMovie);
+  search.addEventListener('keyup', searchMovieEnter);
+
   let page = 1;
+
   function searchMovieEnter(event) {
-    if (event.key === "Enter" && search.value) {
+    if (event.key === 'Enter' && search.value) {
       init(event);
     }
   }
@@ -29,32 +34,53 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function init(event) {
-    const load = document.getElementById("load");
-    search.blur();
-    load.classList.add("active");
-    window.words = await getWordTranslate(search.value);
+    const load = document.getElementById('load');
 
-    const movieData = await getMovieTitle(words, page);
-    window.pages = Math.ceil(movieData.totalResults / 10);
-    const resultTrue = `Showing results for "${words}", result: ${movieData.totalResults}`;
-    const resultFalse = `No result for ${search.value}`;
-    console.log(pages);
-    console.log(movieData);
-    if (movieData.Error) {
-      result.innerHTML = resultFalse;
-      search.placeholder = resultFalse;
-      search.value = "";
-      load.classList.remove("active");
+    search.blur();
+    load.classList.add('active');
+
+    const words = await getWordTranslate(search.value, async (url) => {
+      const res = await fetch(url);
+      const data = await res.json();
+      return data;
+    });
+    console.log(words);
+    if (!words) {
+      load.classList.remove('active');
+      result.innerHTML = resultError;
     } else {
-      const data = await getRaitings(movieData.Search);
-      console.log(data);
-      while (swiper.firstChild) {
-        swiper.removeChild(swiper.firstChild);
+      const movieData = await getMovieTitle(words, page);
+
+      const pages = Math.ceil(movieData.totalResults / 10);
+
+      const resultTrue = `Showing results for "${words}", result: ${movieData.totalResults}`;
+      const resultFalse = `No result for "${search.value}"`;
+
+      if (movieData.Error) {
+        result.innerHTML = resultFalse;
+        search.placeholder = resultFalse;
+        search.value = '';
+
+        load.classList.remove('active');
+      } else {
+        const data = await getRaitings(movieData.Search);
+        if (movieData.totalResults < 4) {
+          swiper.classList.add('small');
+        } else {
+          swiper.classList.remove('small');
+        }
+
+        while (swiper.firstChild) {
+          swiper.removeChild(swiper.firstChild);
+        }
+
+        await createCards(data);
+
+        result.innerHTML = resultTrue;
+        createSwiper(pages, words);
       }
-      await createCards(data);
-      mySwiper.update();
-      result.innerHTML = resultTrue;
-      load.classList.remove("active");
+
+      load.classList.remove('active');
     }
   }
 });
