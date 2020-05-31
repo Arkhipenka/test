@@ -1,91 +1,21 @@
 require('./styles/index.scss');
+require('./styles/index.scss');
 
-import getWordTranslate from './js/translate.js';
-import getMovieTitle from './js/getImdb';
-import getRaitings from './js/getRaitings.js';
-import createCards from './js/createCards';
-import createSwiper from './js/swiper';
+import geoFindMe from './js/location.js';
+import getWeather from './js/weather';
 
-const btnSearch = document.getElementById('btn-search');
-const search = document.getElementById('search');
-export const result = document.getElementById('result');
-export const resultError =
-  'error, try again later or check your internet connection';
-const swiper = document.querySelector('.swiper-wrapper');
+import getImg from './js/getImg';
+import getGeoData from './js/getGeo';
+const body = document.getElementById("body");
 
-document.addEventListener('DOMContentLoaded', () => {
-  search.focus();
+document.addEventListener('DOMContentLoaded', async () => {
 
-  btnSearch.addEventListener('click', searchMovie);
-  search.addEventListener('keyup', searchMovieEnter);
+  const location = await geoFindMe();
+  const img = await getImg("spring");
+  
+  body.style.backgroundImage = `url(${img.photos.photo[0].url_h})`
 
-  let page = 1;
+  console.log(location)
+  console.log(img.photos.photo[1].url_h)
 
-  function searchMovieEnter(event) {
-    if (event.key === 'Enter' && search.value) {
-      init(event);
-    }
-  }
-
-  function searchMovie(event) {
-    if (search.value) {
-      init(event);
-    }
-  }
-
-  async function init(event) {
-    const load = document.getElementById('load');
-
-    search.blur();
-    load.classList.add('active');
-
-    const words = await getWordTranslate(search.value, async (url) => {
-      const res = await fetch(url);
-      const data = await res.json();
-      return data;
-    });
-
-    if (!words) {
-      load.classList.remove('active');
-      result.innerHTML = resultError;
-    } else {
-      const movieData = await getMovieTitle(words, page, async (url) => {
-        const res = await fetch(url);
-        const data = await res.json();
-        console.log(data);
-        return data;
-      });
-
-      const pages = Math.ceil(movieData.totalResults / 10);
-
-      const resultTrue = `Showing results for "${words}", result: ${movieData.totalResults}`;
-      const resultFalse = `No result for "${search.value}"`;
-
-      if (movieData.Error) {
-        result.innerHTML = resultFalse;
-        search.placeholder = resultFalse;
-        search.value = '';
-
-        load.classList.remove('active');
-      } else {
-        const data = await getRaitings(movieData.Search);
-        if (movieData.totalResults < 4) {
-          swiper.classList.add('small');
-        } else {
-          swiper.classList.remove('small');
-        }
-
-        while (swiper.firstChild) {
-          swiper.removeChild(swiper.firstChild);
-        }
-
-        await createCards(data);
-
-        result.innerHTML = resultTrue;
-        createSwiper(pages, words);
-      }
-
-      load.classList.remove('active');
-    }
-  }
 });
