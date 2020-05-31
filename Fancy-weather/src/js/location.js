@@ -25,7 +25,7 @@ async function geoFindMe() {
 
         //map.setCenter([longitude, latitude])
         const weather = await getWeather(latitude, longitude, 'ru')
-        await init(weather)
+        await init(weather, 'ru')
         console.log(weather)
 
         await getGeoData(weather.city.name)

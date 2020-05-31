@@ -12,10 +12,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const location = await geoFindMe();
   const img = await getImg("spring");
-  
+
   body.style.backgroundImage = `url(${img.photos.photo[0].url_h})`
 
-  console.log(location)
-  console.log(img.photos.photo[1].url_h)
 
 });
